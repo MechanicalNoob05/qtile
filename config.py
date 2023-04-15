@@ -261,7 +261,7 @@ keys =[
         ),
 
     Key([], "Print",
-        lazy.spawn("gnome-screenshot"),
+        lazy.spawn("gnome-screenshot -a"),
         desc="File"
         ),
 
@@ -415,7 +415,7 @@ keys.extend(
 layouts = [
         layout.Columns(
             border_focus=[nord_dark["purple"]],
-            border_width=3,
+            border_width=2,
             margin=[5,5,5,5]
             ),
         layout.Max(
@@ -425,7 +425,7 @@ layouts = [
         # layout.Stack(num_stacks=2),
         layout.Spiral(
             border_focus=[nord_dark["purple"]],
-            border_width=3,
+            border_width=2,
             margin=[5,5,5,5]
             ),
         layout.Matrix(
@@ -434,7 +434,7 @@ layouts = [
             ),
         layout.MonadTall(
             border_focus=[nord_dark["purple"]],
-            border_width=3,
+            border_width=2,
             margin=5
             ),
         # layout.MonadWide(),
