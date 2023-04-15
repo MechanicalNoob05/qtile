@@ -476,19 +476,6 @@ screens = [
                         ),
                     widget.Spacer(
                         ),
-                    widget.BatteryIcon(
-                        theme_path='~/.config/qtile/assets/icons/battery_icons_horiz',
-                        scale=1,
-                        update_interval=1,
-                        foreground="#F2EDDD",
-                        ),
-                    widget.Battery(
-                        format='{percent:2.0%}',
-                        fontsize=18,
-                        update_interval=1,
-                        foreground="#F2EDDD",
-                        padding=2,
-                        ),
                     widget.WidgetBox(
                         widgets=[
                             widget.Systray(
@@ -501,6 +488,21 @@ screens = [
                         #foreground=nord_dark["fg"],
                         close_button_location='right',
                         ),
+
+                    widget.BatteryIcon(
+                        theme_path='~/.config/qtile/assets/icons/battery_icons_horiz',
+                        scale=1,
+                        update_interval=1,
+                        foreground="#F2EDDD",
+                        ),
+                    widget.Battery(
+                        format=' {percent:2.0%}',
+                        fontsize=18,
+                        update_interval=1,
+                        foreground="#F2EDDD",
+                        padding=2,
+                        ),
+
 
                     ],
                 30,
