@@ -503,12 +503,10 @@ screens = [
                         ),
 
                     ],
-                25,
+                30,
                 background="#ffffff00",
-                border_width = [10,1,1,1],
             opacity=1,
             #margin=[10,10,0,10],
-            border_color=["#ffffff00","#ffffff00","#ffffff00","#ffffff00"],
         ),
     ),
 ]
