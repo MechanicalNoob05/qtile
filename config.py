@@ -66,7 +66,7 @@ nord_dark = {
 }
 
 mod = "mod4"
-terminal = "st "
+terminal = "kitty"
 
 keys =[
     # A list of available commands that can be bound to keys can be found
@@ -202,7 +202,7 @@ keys =[
     ),
     Key(
         [mod, "shift"],"p",
-        lazy.spawn('st -e ".config/rofi/powermenu.sh"'),
+        lazy.spawn('kitty -e ".config/rofi/powermenu.sh"'),
         desc="Power Menu"
     ),
 
@@ -457,7 +457,7 @@ screens = [
             top=bar.Bar(
                 [
                     widget.GroupBox(
-                        highlight_method='line',
+                        highlight_method='block',
                         inactive="#040312",
                         active="#A78C94",
                         fontsize=15,
@@ -466,6 +466,7 @@ screens = [
                         highlight_color="#545478",
                         borderwidth=3,
                         padding=4,
+                        hide_unused=True,
                         ),
                     widget.Spacer(
                         ),
