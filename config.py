@@ -1,33 +1,14 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget,hook
 from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import os
+import subprocess
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([home])
 
 nord_dark = {
     'bg': "#24272d",
@@ -202,7 +183,12 @@ keys =[
     ),
     Key(
         [mod, "shift"],"p",
-        lazy.spawn('kitty -e ".config/rofi/powermenu.sh"'),
+        lazy.spawn('kitty ".config/rofi/powermenu.sh"'),
+        desc="Power Menu"
+    ),
+    Key(
+        [mod, "shift"],"w",
+        lazy.spawn('kitty -e ".config/rofi/rofi-wifi-menu.sh"'),
         desc="Power Menu"
     ),
 
@@ -223,6 +209,11 @@ keys =[
         desc="Firefox"
         ),
 
+    Key([mod, "Shift"], "b",
+        lazy.spawn("firefox -P Blank"),
+        desc="Firefox"
+        ),
+
     Key([mod], "g",
         lazy.spawn("gedit"),
         desc="Gedit"
@@ -234,7 +225,7 @@ keys =[
         ),
 
     Key([mod], "c",
-        lazy.spawn("clipmenu"),
+        lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"),
         desc="Clipboard"
         ),
 
@@ -265,11 +256,6 @@ keys =[
         desc="File"
         ),
 
-    Key([mod], "t",
-        lazy.spawn("telegram-desktop"),
-        desc="Telegram"
-        ),
-
     Key([mod], "m",
         lazy.spawn("thunderbird"),
         desc="Mail"
@@ -286,6 +272,22 @@ keys =[
         "XF86MonBrightnessDown",
         lazy.spawn("brightnessctl set 2%-")
     ),
+    Key(
+        [],
+        "XF86AudioLowerVolume",
+        lazy.spawn("pamixer -d 5")
+    ),
+    Key(
+        [],
+        "XF86AudioRaiseVolume",
+        lazy.spawn("pamixer -i 5")
+    ),
+    Key(
+        [],
+        "XF86AudioMute",
+        lazy.spawn("pamixer -t")
+    ),
+
 
 ]
 
@@ -456,18 +458,6 @@ screens = [
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(
-                        highlight_method='block',
-                        inactive="#040312",
-                        active="#A78C94",
-                        fontsize=15,
-                        center_aligned=True, 
-                        block_highlight_text_color="#F2EDDD",
-                        highlight_color="#545478",
-                        borderwidth=3,
-                        padding=4,
-                        hide_unused=True,
-                        ),
                     widget.Spacer(
                         ),
                     widget.Clock(

@@ -2,4 +2,4 @@
 nitrogen --restore &
 nm-applet &
 picom &
-dunst &
+greenclip daemon &
