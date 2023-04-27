@@ -7,8 +7,8 @@ import subprocess
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call([home])
+    home = os.path.expanduser('~/.config/qtile/')
+    subprocess.call([home+'/autostart.sh'])
 
 nord_dark = {
     'bg': "#24272d",
@@ -275,17 +275,17 @@ keys =[
     Key(
         [],
         "XF86AudioLowerVolume",
-        lazy.spawn("pamixer -d 5")
+        lazy.spawn('kitty ".config/qtile/scripts/voldown.sh"',shell=True),
     ),
     Key(
         [],
         "XF86AudioRaiseVolume",
-        lazy.spawn("pamixer -i 5")
+        lazy.spawn('kitty ".config/qtile/scripts/volup.sh"',shell=True),
     ),
     Key(
         [],
         "XF86AudioMute",
-        lazy.spawn("pamixer -t")
+        lazy.spawn('kitty ".config/qtile/scripts/volmute.sh"',shell=True),
     ),
 
 
