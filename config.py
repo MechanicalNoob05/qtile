@@ -437,7 +437,7 @@ layouts = [
         layout.MonadTall(
             border_focus=[nord_dark["purple"]],
             border_width=2,
-            margin=5
+            margin=10
             ),
         # layout.MonadWide(),
         # layout.RatioTile(),
@@ -458,10 +458,6 @@ screens = [
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(
-                        hide_unused=True,
-                        highlight_method='text',
-                        ),
                     widget.Spacer(),
                     widget.Clock(),
                     widget.Spacer(),
