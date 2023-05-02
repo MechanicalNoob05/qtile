@@ -449,8 +449,8 @@ layouts = [
 
 widget_defaults = dict(
         font="Source Code Variable Bold",
-        fontsize=15,
-        padding=3,
+        fontsize=20,
+        padding=4,
         )
 extension_defaults = widget_defaults.copy()
 
@@ -458,52 +458,27 @@ screens = [
         Screen(
             top=bar.Bar(
                 [
-                    widget.Spacer(
+                    widget.GroupBox(
+                        hide_unused=True,
+                        highlight_method='text',
                         ),
-                    widget.Clock(
-                        foreground="#F2EDDD",
-                        format='%a,%I:%M',
-                        fontsize=18,
-                        ),
-                    widget.Spacer(
-                        ),
+                    widget.Spacer(),
+                    widget.Clock(),
+                    widget.Spacer(),
                     widget.WidgetBox(
+                        close_button_location="right",
+                        text_closed=" ",
+                        text_open=" ",
                         widgets=[
-                            widget.Systray(
-                                padding=5,
-                                ),
-                            ],
-                        text_closed='  ',
-                        text_open='  ',
-                        foreground="#F2EDDD",
-                        #foreground=nord_dark["fg"],
-                        close_button_location='right',
+                            widget.Systray(),
+                            ]
                         ),
-
-                    widget.BatteryIcon(
-                        theme_path='~/.config/qtile/assets/icons/battery_icons_horiz',
-                        scale=1,
-                        update_interval=1,
-                        foreground="#F2EDDD",
-                        ),
-                    widget.Battery(
-                        format=' {percent:2.0%}',
-                        fontsize=18,
-                        update_interval=1,
-                        foreground="#F2EDDD",
-                        padding=2,
-                        ),
-
-
                     ],
-                30,
-                background="#ffffff00",
-            opacity=1,
-            #margin=[10,10,0,10],
-        ),
-    ),
-]
-
+                24,
+                background='#00000000',
+                ),
+            ),
+        ]
 
 # Drag floating layouts.
 mouse = [
