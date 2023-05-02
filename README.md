@@ -3,7 +3,9 @@ Here is my qtile config
 
 ------------
 
-![SS](./2023-05-02 09-05-44.gif)
+
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/35838069/235577304-22b5ad92-37d8-45e3-b49c-e8e98a0831ac.gif)
+
 
 ------------
 
