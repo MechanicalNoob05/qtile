@@ -420,9 +420,6 @@ layouts = [
             border_width=2,
             margin=[5,5,5,5]
             ),
-        layout.Max(
-            margin=[5,5,5,5]
-            ),
         # Try more layouts by unleashing below layouts.
         # layout.Stack(num_stacks=2),
         layout.Spiral(
@@ -439,6 +436,9 @@ layouts = [
             border_width=2,
             margin=10
             ),
+        layout.Max(
+            margin=[5,5,5,5]
+            ),
         # layout.MonadWide(),
         # layout.RatioTile(),
         # layout.Tile(),
@@ -448,9 +448,9 @@ layouts = [
         ]
 
 widget_defaults = dict(
-        font="Source Code Variable Bold",
-        fontsize=20,
-        padding=4,
+        font="JetBrainsMono Nerd Font",
+        fontsize=25,
+        padding=10,
         )
 extension_defaults = widget_defaults.copy()
 
@@ -459,18 +459,21 @@ screens = [
             top=bar.Bar(
                 [
                     widget.Spacer(),
-                    widget.Clock(),
+                    widget.Clock(
+                        format='%I:%M',
+                        ),
                     widget.Spacer(),
                     widget.WidgetBox(
                         close_button_location="right",
                         text_closed=" ",
                         text_open=" ",
+                        icon_size=30,
                         widgets=[
                             widget.Systray(),
                             ]
                         ),
                     ],
-                24,
+                30,
                 background='#00000000',
                 ),
             ),
