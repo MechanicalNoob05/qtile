@@ -181,16 +181,6 @@ keys =[
         lazy.shutdown(),
         desc="Logout Qtile"
     ),
-    Key(
-        [mod, "shift"],"p",
-        lazy.spawn('kitty ".config/rofi/powermenu.sh"'),
-        desc="Power Menu"
-    ),
-    Key(
-        [mod, "shift"],"w",
-        lazy.spawn('kitty -e ".config/rofi/rofi-wifi-menu.sh"'),
-        desc="Power Menu"
-    ),
 
 #################################################################
 #################################################################
@@ -212,11 +202,6 @@ keys =[
     Key([mod, "Shift"], "b",
         lazy.spawn("firefox -P Blank"),
         desc="Firefox"
-        ),
-
-    Key([mod], "g",
-        lazy.spawn("gedit"),
-        desc="Gedit"
         ),
 
     Key([mod], "f",
@@ -390,6 +375,15 @@ groups.append(
                            y=0.1,
                            opacity=1
                            ),
+                       DropDown(
+                           'Calender',
+                           'gnome-calendar',
+                           width=0.4,
+                           height=0.5,
+                           x=0.3,
+                           y=0.1,
+                           opacity=1
+                           ),
                        ]
                    )
         )
@@ -410,6 +404,11 @@ keys.extend(
         ["control"],
         "3",
         lazy.group['scratchpad'].dropdown_toggle('Wallpaper')
+        ),
+    Key(
+        ["control"],
+        "4",
+        lazy.group['scratchpad'].dropdown_toggle('Calender')
         ),
     ]
 )
@@ -458,6 +457,17 @@ screens = [
         Screen(
             top=bar.Bar(
                 [
+                    widget.WidgetBox(
+                        close_button_location="left",
+                        text_closed="  ",
+                        text_open="  ",
+                        icon_size=30,
+                        widgets=[
+                            widget.Systray(
+                                icon_size=25,
+                                ),
+                            ]
+                        ),
                     widget.Spacer(),
                     widget.Clock(
                         format='%I:%M',
@@ -465,12 +475,17 @@ screens = [
                     widget.Spacer(),
                     widget.WidgetBox(
                         close_button_location="right",
-                        text_closed="  ",
-                        text_open="  ",
+                        text_closed=" ",
+                        text_open=" ",
                         icon_size=30,
                         widgets=[
-                            widget.Systray(
-                                icon_size=25,
+                            widget.LaunchBar(
+                                text_only=True,
+                                progs=[
+                                    (' ','poweroff -h','poweroff'),
+                                    (' ','qtile cmd-obj -o cmd -f shutdown','Lock'),
+                                    (' ','restart','restart')
+                                    ]
                                 ),
                             ]
                         ),
