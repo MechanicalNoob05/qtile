@@ -489,6 +489,16 @@ screens = [
                                 ),
                             ]
                         ),
+                    widget.Battery(
+                        discharge_char="󰁹",
+                        charge_char="󰂄",
+                        format='{percent:2.0%} {char}',
+                        low_percentage=15,
+                        notify_below=20,
+                        notification_timeout=5,
+                        low_foreground=[nord_dark["red"]],
+                        update_interval=60
+                        ),
                     ],
                 30,
                 background='#00000000',
