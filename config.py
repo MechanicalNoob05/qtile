@@ -457,16 +457,8 @@ screens = [
         Screen(
             top=bar.Bar(
                 [
-                    widget.WidgetBox(
-                        close_button_location="left",
-                        text_closed="  ",
-                        text_open="  ",
-                        icon_size=30,
-                        widgets=[
-                            widget.Systray(
-                                icon_size=25,
-                                ),
-                            ]
+                    widget.Systray(
+                        icon_size=25,
                         ),
                     widget.Spacer(),
                     widget.Clock(
@@ -484,20 +476,10 @@ screens = [
                                 progs=[
                                     (' ','poweroff -h','poweroff'),
                                     (' ','qtile cmd-obj -o cmd -f shutdown','Lock'),
-                                    (' ','restart','restart')
+                                    (' ','reboot','restart')
                                     ]
                                 ),
                             ]
-                        ),
-                    widget.Battery(
-                        discharge_char="󰁹",
-                        charge_char="󰂄",
-                        format='{percent:2.0%} {char}',
-                        low_percentage=15,
-                        notify_below=20,
-                        notification_timeout=5,
-                        low_foreground=[nord_dark["red"]],
-                        update_interval=60
                         ),
                     ],
                 30,
