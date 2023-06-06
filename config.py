@@ -48,6 +48,7 @@ nord_dark = {
 
 mod = "mod4"
 terminal = "kitty"
+fileManager = "nautilus"
 
 keys =[
     # A list of available commands that can be bound to keys can be found
@@ -205,7 +206,7 @@ keys =[
         ),
 
     Key([mod], "f",
-        lazy.spawn("nautilus"),
+        lazy.spawn(fileManager),
         desc="File"
         ),
 
@@ -260,17 +261,17 @@ keys =[
     Key(
         [],
         "XF86AudioLowerVolume",
-        lazy.spawn('kitty ".config/qtile/scripts/voldown.sh"',shell=True),
+        lazy.spawn('pactl set-sink-volume 0 -5%'),
     ),
     Key(
         [],
         "XF86AudioRaiseVolume",
-        lazy.spawn('kitty ".config/qtile/scripts/volup.sh"',shell=True),
+        lazy.spawn('pactl set-sink-volume 0 +5%'),
     ),
     Key(
         [],
         "XF86AudioMute",
-        lazy.spawn('kitty ".config/qtile/scripts/volmute.sh"',shell=True),
+        lazy.spawn('pactl set-sink-mute 0 toggle'),
     ),
 
 
@@ -359,7 +360,7 @@ groups.append(
                            ),
                        DropDown(
                            'File-manager',
-                           'nautilus',
+                           fileManager,
                            width=0.5,
                            height=0.6,
                            x=0.25,
